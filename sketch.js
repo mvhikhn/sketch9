@@ -1,5 +1,8 @@
 function setup() {
-  createCanvas(800, 800);
+  const canvas = createCanvas(800, 800);
+  canvas.elt.style.display = 'block';
+  canvas.elt.style.maxWidth = '100%';
+  canvas.elt.style.height = 'auto';
   colorMode(RGB);
   angleMode(DEGREES);
   noSmooth();
@@ -38,7 +41,6 @@ function drawGrid(x, y, w, h, cellCount, margin) {
     for (let i = 0; i < cellCount; i++) {
       const cx = i * (cellW + margin);
       const cy = j * (cellH + margin);
-
       if (min(cellW, cellH) > width / 15) {
         drawGrid(cx, cy, cellW, cellH, int(random(2, 4)), margin / 2);
       } else {
@@ -56,4 +58,8 @@ function drawCell(x, y, w, h) {
   stroke(random(palette));
   strokeWeight(1);
   rect(x, y, w, h);
+}
+
+function windowResized() {
+  redraw();
 }
